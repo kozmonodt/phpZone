@@ -1,38 +1,51 @@
 <?php
 
+try{
+    spl_autoload_register(function (string $className)
+    {
+        //echo __DIR__ . '/../src/' . str_replace('\\','/', $className) . '.php' . '<br>';
+        require_once __DIR__ . '/../src/' . str_replace('\\','/', $className) . '.php';
+    });
 
-spl_autoload_register(function (string $className)
-{
-    require_once __DIR__ . '/../src/' . str_replace('\\','/', $className) . '.php';
-});
+    $route = $_GET['route'] ?? '';
+    $routes = require_once __DIR__ . '/../src/routes.php';
 
-$author = new MyProject\Models\Users\User('Loh');
-$article = new MyProject\Models\Articles\Article('Bitch','Lorem ipsum',$author);
-$controller = new \MyProject\Controllers\MainController();
+    $foundRoute = false;
+    foreach ($routes as $pattern => $controllerAndAction){
+        preg_match($pattern,$route,$matches);
+        if(!empty($matches)){
+            $foundRoute = true;
+            break;
+        }
+    }
+
+    if(!$foundRoute){
+        throw new \MyProject\Exceptions\NotFoundExeption();
+    }
+    unset($matches[0]);
+
+
+    $controllerName = $controllerAndAction[0];
+    $actionName = $controllerAndAction[1];
+
+    $controller = new $controllerName();
+    $controller->$actionName(...$matches);
+}
+catch (\MyProject\Exceptions\DbException $e){
+    $view = new \MyProject\View\View(__DIR__ . '/../templates');
+    $view->renderHTML('errors/500.php',['error'=>$e->getMessage()]);
+}
+catch (\MyProject\Exceptions\NotFoundExeption $e){
+    $view = new \MyProject\View\View(__DIR__ . '/../templates');
+    $view->renderHTML('errors/404.php',[],404);
+}
+
+
+
+
+
 /*
-if(!empty($_GET['name'])) {
-    $controller->sayHello($_GET['name']);
-}  else {
-    $controller -> main();
-}
-*/
-$route = $_GET['route'] ?? '';
-$pattern = "/^hello\/(.*)$/";
-preg_match($pattern,$route,$matches);
-
-if(!empty($matches)){
-    $controller = new \MyProject\Controllers\MainController();
-    $controller ->sayHello($matches[1]);
-}
-
-$pattern = "/^$/";
-preg_match($pattern,$_GET['route'],$matches);
-
-if(!empty($matches)){
-    $controller =1;
-}
-
 echo '<pre>';
 var_dump($matches);
 echo '</pre>';
-echo "Bitch nigga " . $article->getAuthor()->getName();
+*/
