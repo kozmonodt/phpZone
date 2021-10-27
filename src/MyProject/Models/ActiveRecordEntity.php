@@ -139,4 +139,6 @@ abstract class ActiveRecordEntity
         return $result[0];
     }
     abstract protected static function getTableName() : string;
+
+
 }

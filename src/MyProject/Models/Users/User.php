@@ -22,6 +22,20 @@ class User extends ActiveRecordEntity
 
     protected $createdAt;
 
+    /**
+     * @return mixed
+     */
+    public function getAuthToken()
+    {
+        return $this->authToken;
+    }
+
+
+    public function getPasswordHash()
+    {
+        return $this->passwordHash;
+    }
+
     public function getEmail(): string
     {
         return $this->email;
@@ -35,6 +49,13 @@ class User extends ActiveRecordEntity
     protected static function getTableName(): string
     {
         return 'users';
+    }
+
+
+
+    private function refreshAuthToken()
+    {
+        $this->authToken = sha1(random_bytes(100)) . sha1(random_bytes(100));
     }
 
     public static function signUp(array $userData)
@@ -73,5 +94,46 @@ class User extends ActiveRecordEntity
             throw new InvalidDataException('Пароль должен быть не менее 8 символов');
         }
 
+        $user = new User();
+
+        $user->nickname = $userData['nickname'];
+        $user->email = $userData['email'];
+        $user->passwordHash = password_hash($userData['password'], PASSWORD_DEFAULT);
+        $user->isConfirmed = true;
+        $user->role = 'user';
+        $user->authToken = sha1(random_bytes(100)) . sha1(random_bytes(100));
+        $user->save();
+
+        return $user;
+
+    }
+
+    public static function login($loginData) : User
+    {
+        if (empty($loginData['email'])) {
+            throw new InvalidDataException('Не передан email');
+        }
+
+        if (empty($loginData['password'])) {
+            throw new InvalidDataException('Не передан password');
+        }
+
+        $user = User::findOneByColumn('email', $loginData['email']);
+        if ($user === null) {
+            throw new InvalidDataException('Нет пользователя с таким email');
+        }
+
+        if (!password_verify($loginData['password'], $user->getPasswordHash())) {
+            throw new InvalidDataException('Неправильный пароль');
+        }
+
+        if (!$user->isConfirmed) {
+            throw new InvalidDataException('Пользователь не подтверждён');
+        }
+
+        $user->refreshAuthToken();
+        $user->save();
+
+        return $user;
     }
 }

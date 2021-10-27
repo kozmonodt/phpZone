@@ -39,6 +39,10 @@ catch (\MyProject\Exceptions\NotFoundExeption $e){
     $view = new \MyProject\View\View(__DIR__ . '/../templates');
     $view->renderHTML('errors/404.php',[],404);
 }
+catch (\MyProject\Exceptions\UnauthorizedException $e){
+    $view = new \MyProject\View\View(__DIR__ . '/../templates');
+    $view->renderHTML('errors/401.php',['error'=>$e->getMessage()],401);
+}
 
 
 

@@ -4,18 +4,13 @@ namespace MyProject\Controllers;
 
 use JetBrains\PhpStorm\Pure;
 use MyProject\Exceptions\NotFoundExeption;
+use MyProject\Exceptions\UnauthorizedException;
 use MyProject\Models\Articles\Article;
 use MyProject\Models\Users\User;
 use MyProject\View\View;
 
-class ArticlesController
+class ArticlesController extends AbstractController
 {
-private $view;
-
-    public function __construct()
-    {
-        $this->view = new View(__DIR__. '/../../../templates');
-    }
 
     public function view(int $articleId)
     {
@@ -55,14 +50,18 @@ private $view;
 
     public function add() :void
     {
-        $author = User::getById(1);
+        if($this->user === null){
+            throw new UnauthorizedException();
+        }
+        $this->view->renderHTML('articles/add.php');
+       /* $author = User::getById(1);
 
         $article = new Article();
         $article->setAuthor($author);
         $article->setName('Very new name');
         $article->setText('Very new text');
 
-        $article->save();
+        $article->save();*/
 
 //        echo '<pre>';
 //        var_dump($article);
