@@ -9,7 +9,7 @@
         <input type="text" name="name" id="name" value="<?= $_POST['name'] ?? ''?>" size="50"><br>
         <br>
         <label for="textarea">Текст статьи</label><br>
-        <textarea name="textarea" id="textarea" cols="80" rows="10"><?= $_POST['text'] ?? '' ?></textarea><br>
+        <textarea name="text" id="text" cols="80" rows="10"><?= $_POST['textarea'] ?? '' ?></textarea><br>
         <br>
         <input type="submit" value="Создать">
     </form>

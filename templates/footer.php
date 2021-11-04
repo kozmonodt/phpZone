@@ -1,4 +1,10 @@
-<td width="300px" class="sidebar">
+
+<div id="footer">
+    <a href="/">Булах А.А.</a> &copy; 2021</a>
+</div>
+</body>
+
+<!--<td width="300px" class="sidebar">
     <div class="sidebarHeader">Меню</div>
     <ul>
         <li><a href="/">Главная страница</a></li>
@@ -12,4 +18,4 @@
 </table>
 
 </body>
-</html>
+</html>-->
