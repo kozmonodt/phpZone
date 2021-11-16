@@ -1,6 +1,7 @@
 <?php
 return [
     "/^$/" => [\MyProject\Controllers\MainController::class, 'main'],
+    "/^main$/" => [\MyProject\Controllers\MainController::class, 'main'],
     "/^articles\/(\d+)$/" => [\MyProject\Controllers\ArticlesController::class, 'view'],
     "/^articles\/(\d+)\/edit$/" =>[\MyProject\Controllers\ArticlesController::class, 'edit'],
     "/^articles\/add$/" =>[\MyProject\Controllers\ArticlesController::class, 'add'],
@@ -17,6 +18,7 @@ return [
     "/^contact\/validateContactForm$/" => [\MyProject\Controllers\FormController::class, 'validateContactForm'],
     "/^test$/" => [\MyProject\Controllers\MainController::class, 'test'],
     "/^test\/validateTestClient$/" => [\MyProject\Controllers\FormController::class, 'validateTestClient'],
-    "/^test\/testResultsVerification/" => [\MyProject\Controllers\FormController::class, 'testResultsVerification'],
-    "/^guestBook$/" => [\MyProject\Controllers\MainController::class, 'guestBook'],
+    "/^test\/testResultsVerification$/" => [\MyProject\Controllers\FormController::class, 'testResultsVerification'],
+    "/^guestBook$/" => [\MyProject\Controllers\FeedbackController::class, 'guestBook'],
+    "/^guestBook\/newFeedback$/" => [\MyProject\Controllers\FeedbackController::class, 'newFeedback'],
 ];

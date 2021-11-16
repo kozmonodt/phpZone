@@ -3,6 +3,7 @@
 namespace MyProject\Controllers;
 
 use MyProject\Models\Articles\Article;
+use MyProject\Models\Feedback\Feedback;
 use MyProject\Models\Interests\Interests;
 use MyProject\Models\Just_Data\Photo_Album_Data;
 use MyProject\Models\Users\UsersAuthService;
@@ -50,8 +51,5 @@ class MainController extends AbstractController
         $this->view->renderHTML('main/test.php');
     }
 
-    public function guestBook()
-    {
-        $this->view->renderHTML('main/guestBook.php');
-    }
+
 }
