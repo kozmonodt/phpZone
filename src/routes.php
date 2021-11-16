@@ -14,5 +14,9 @@ return [
     "/^test$/"=>[\MyProject\Controllers\MainController::class,'test'],
     "/^photo$/"=>[\MyProject\Controllers\MainController::class, 'photo'],
     "/^contact$/" =>[\MyProject\Controllers\MainController::class, 'contact'],
-    "/^contact\/validate$/" => [\MyProject\Controllers\FormController::class, 'validateForm'],
+    "/^contact\/validateContactForm$/" => [\MyProject\Controllers\FormController::class, 'validateContactForm'],
+    "/^test$/" => [\MyProject\Controllers\MainController::class, 'test'],
+    "/^test\/validateTestClient$/" => [\MyProject\Controllers\FormController::class, 'validateTestClient'],
+    "/^test\/testResultsVerification/" => [\MyProject\Controllers\FormController::class, 'testResultsVerification'],
+    "/^guestBook$/" => [\MyProject\Controllers\MainController::class, 'guestBook'],
 ];

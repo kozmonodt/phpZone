@@ -2,7 +2,7 @@
 <div id="content">
     <p style="font-weight: bolder;">Накалякать братве</p>
     <p>
-    <form method="post" action="/contact/validate">
+    <form method="post" action="/contact/validateContactForm">
         <label id="">Напишите свое ФИО <span id="error_fio" class="noErrorHappen">*</span></label>
         <input type="text" id='fio' onblur="check_fio()" name='fio'>
         <div class="popup-overlay">

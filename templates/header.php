@@ -49,6 +49,7 @@
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/photo">Фотоальбом</a></li>
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/contact">Контакты</a></li>
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/history">История</a></li>
+            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/guestBook">Гостевая книга</a></li>
         </ul>
     </nav>
 </header>

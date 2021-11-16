@@ -44,4 +44,14 @@ class MainController extends AbstractController
     {
         $this->view->renderHTML('main/contact.php');
     }
+
+    public function test()
+    {
+        $this->view->renderHTML('main/test.php');
+    }
+
+    public function guestBook()
+    {
+        $this->view->renderHTML('main/guestBook.php');
+    }
 }

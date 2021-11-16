@@ -12,12 +12,13 @@ class FormValidator
         $this->form_fields_names = $form_field_names;
     }
 
-    public function isNotEmpty($data){
+    public function isNotEmpty($data, $form_field){
         if(!empty($data)){
             return true;
         } else
         {
-            array_push($this->Errors,"There is an empty data in " . Form_Validator::$Current_field);
+//            array_push($this->Errors,"There is an empty data in " . Form_Validator::$Current_field);
+            array_push($this->Errors,"There is an empty data in " . $form_field);
             return false;
         }
     }
@@ -79,17 +80,16 @@ class FormValidator
         var_dump($post_array);
         echo '</pre>';
         foreach($this->form_fields_names as $form_field) {
-            Form_Validator::$Current_field = $form_field;
             if(array_key_exists($form_field, $post_array)){
                 if(array_key_exists($form_field, $this->Rules)){
                     echo "exists in check list" . PHP_EOL;
                     //$callback = $this->Rules['fio'];
                     $field_data = $post_array[$form_field];
+
                     echo '<pre>';
                     var_dump($this->Rules);
                     var_dump($this->Rules[$form_field]);
                     var_dump($field_data);
-
                     echo '</pre>';
 
                     //echo $this->Rules[$form_field];
