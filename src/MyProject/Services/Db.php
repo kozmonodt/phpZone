@@ -45,6 +45,16 @@ class Db
         return $sth->fetchAll(\PDO::FETCH_CLASS, $className);
     }
 
+    public function countQuery(string $sql) : ? string
+    {
+        $sth = $this->pdo->prepare($sql);
+        $result = $sth->execute();
+        if ($result === false){
+            return null;
+        }
+        return $sth->fetchColumn();
+    }
+
     public static function getInstancesCount() : int
     {
         return self::$instancesCount;

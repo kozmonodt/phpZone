@@ -21,4 +21,10 @@ return [
     "/^test\/testResultsVerification$/" => [\MyProject\Controllers\FormController::class, 'testResultsVerification'],
     "/^guestBook$/" => [\MyProject\Controllers\FeedbackController::class, 'guestBook'],
     "/^guestBook\/newFeedback$/" => [\MyProject\Controllers\FeedbackController::class, 'newFeedback'],
+    "/^guestBookUpload$/" => [\MyProject\Controllers\FeedbackController::class, 'guestBookUpload'],
+    "/^guestBookUpload\/upload$/" => [\MyProject\Controllers\FeedbackController::class, 'guestBookUploadFile'],
+    "/^test\/(\d+)$/" => [\MyProject\Controllers\FormController::class, 'viewTest'],
+    "/^posts$/" => [\MyProject\Controllers\PostsController::class, 'main'],
+    "/^posts\/add$/" =>[\MyProject\Controllers\PostsController::class, 'add'],
+    "/^blog$/" => [\MyProject\Controllers\PostsController::class, 'blog'],
 ];

@@ -50,9 +50,15 @@
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/contact">Контакты</a></li>
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/history">История</a></li>
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/guestBook">Гостевая книга</a></li>
+            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)">
+                <a href="/guestBookUpload">Загрузка сообщений гостевой книги</a>
+            </li>
+            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/posts">Редактор блога</a></li>
+            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/blog">Мой блог</a></li>
         </ul>
     </nav>
 </header>
+<br><br>
 
 <!--<head>
     <meta charset="UTF-8">

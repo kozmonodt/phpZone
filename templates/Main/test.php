@@ -3,8 +3,12 @@
         <p style="font-weight: bolder;">СевГУ</p>
         <p>ИС</p>
         <p>
-        <form onsubmit="checkform(this)" method = 'post' action = "test/validateTestClient">
+        <form onsubmit="checkform(this)" method = 'post' action = "/test/validateTestClient">
+            <?php if(!empty($error)):?>
+                <div style="color: red"><?=$error ?></div>
+            <?php endif; ?>
             Выберите свою группу
+
             <select name = 'group'>
                 <optgroup label="Четкие">
                     <option value="ИСб-18-1-з">ИСб-18-1-з</option>
@@ -16,11 +20,22 @@
                 </optgroup>
             </select>
             <br>
-            Напишите свое ФИО <input type="text" id="FIO" name = 'fio'>
+            Напишите свое ФИО <input type="text" id="FIO" name = 'fio' value = "<?= $_POST['fio'] ?? ''?>">
             <br>
             <input type="submit" value="Отправить">
         </form>
-        <form onsubmit="check_for_numbs()" method = "post" action = "test/testResultsVerification">
+        <form onsubmit="check_for_numbs()" method = "post" action = "/test/testResultsVerification">
+            <?php if(empty($error)):?>
+                <label name = "fio" ><?= $_POST['fio'] ?? ''?></label><br>
+                <input type="hidden" id="postId" name="fio" value="<?= $_POST['fio'] ?? '' ?>">
+                <?php
+                    if(isset($_POST['fio'])){
+                        session_start();
+                        $SESSION_["fio"] = $_POST['fio'];
+                    }
+                ?>
+            <?php endif; ?>
+
             <p>Сколько будет 2+2
             <div>
                 <input type="radio" id="2" name="two_plus_two" value="2" checked>
@@ -35,14 +50,6 @@
                 <label for="4">4</label>
             </div>
             </p>
-            <!--
-            <p>
-                Сколько будет 2+2
-                Ответ: 2 <INPUT NAME="POL[]" TYPE= Checkbox VALUE="2">
-                Ответ: 3 <INPUT NAME="POL[]" TYPE= Checkbox VALUE="3">
-                Ответ: 4 <INPUT NAME="POL[]" TYPE= Checkbox VALUE="4">
-            </p>
-            -->
             <p>Выберите четное число
                 <select name='chislo'>
                     <optgroup label="Нечетные">

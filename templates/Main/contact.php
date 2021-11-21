@@ -1,10 +1,13 @@
 <?php include_once __DIR__ . '/../header.php'?>
 <div id="content">
+    <?php if(!empty($error)):?>
+        <div style="color: red"><?=$error ?></div>
+    <?php endif; ?>
     <p style="font-weight: bolder;">Накалякать братве</p>
     <p>
     <form method="post" action="/contact/validateContactForm">
         <label id="">Напишите свое ФИО <span id="error_fio" class="noErrorHappen">*</span></label>
-        <input type="text" id='fio' onblur="check_fio()" name='fio'>
+        <input type="text" id='fio' onblur="check_fio()" name='fio' value="<?= $_POST['fio'] ?? ''?>">
         <div class="popup-overlay">
             <div class="popup-content">
                 <h2>Э слышь</h2>
@@ -12,10 +15,10 @@
             </div>
         </div>
         <br>
-        Напишите свою почту <input type="text" id="email" name = 'email'>
+        Напишите свою почту <input type="text" id="email" name = 'email' value="<?= $_POST['email'] ?? ''?>">
         <br>
         <label id="">Напишите свой телефон <span id="error_tel" class="noErrorHappen">*</span></label>
-        <input type="text" id="telefon" onblur="check_tel()" name = 'telefon'>
+        <input type="text" id="telefon" onblur="check_tel()" name = 'telefon' value="<?= $_POST['telefon'] ?? ''?>">
         <br>
         <p>
             Сколько Вам лет
@@ -53,21 +56,8 @@
         <input type="submit" value="Отправить" id="submit">
 
     </form>
+    <br>
 
-    <?php echo $_SERVER['REQUEST_URI']; ?>
-    <?php echo  $_POST["fio"]; ?>
-    <?php
-    echo '<pre>';
-    var_dump($data);
-    echo '</pre>';
-    // exit;
-    ?>
-    <?php
-    echo '<pre>';
-    var_dump($_SERVER);
-    echo '</pre>';
-    exit;
-    ?>
 
 
 </div>

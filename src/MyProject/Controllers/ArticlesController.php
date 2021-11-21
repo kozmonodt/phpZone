@@ -47,7 +47,7 @@ class ArticlesController extends AbstractController
         }
 
         if($this->user === null){
-            throw UnauthorizedException();
+            throw new UnauthorizedException();
         }
 
         if(!empty($_POST)){

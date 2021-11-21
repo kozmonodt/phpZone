@@ -11,8 +11,8 @@ class ValidatorsData
     ];
 
     private static $rulesForTestClient = [
-        'group' => array('isSet'),
-        'fio' => array('isNotEmpty', 'isFIO'),
+        'group' => ['isSet'],
+        'fio' => ['isNotEmpty', 'isFIO'],
     ];
 
     private static $rightAnswersForTest = [
