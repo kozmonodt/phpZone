@@ -1,4 +1,4 @@
-<?php include_once __DIR__ . '/../header.php'?>
+<?php include_once __DIR__ . '/header.php' ?>
 
     <h1>Создание новой статьи</h1>
     <?php if(!empty($error)):?>
@@ -24,4 +24,4 @@
         <hr>
     <?php endforeach;?>
 
-<?php include_once __DIR__ . '/../footer.php'?>
+<?php include_once __DIR__ . '/footer.php' ?>

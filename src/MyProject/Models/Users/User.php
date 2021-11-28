@@ -136,4 +136,9 @@ class User extends ActiveRecordEntity
 
         return $user;
     }
+
+    public function isAdmin() : bool
+    {
+        return $this->role === 'admin';
+    }
 }

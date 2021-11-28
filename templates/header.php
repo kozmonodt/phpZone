@@ -48,13 +48,21 @@
             </li>
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/photo">Фотоальбом</a></li>
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/contact">Контакты</a></li>
-            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/history">История</a></li>
+<!--            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/history">История</a></li>-->
             <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/guestBook">Гостевая книга</a></li>
-            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)">
-                <a href="/guestBookUpload">Загрузка сообщений гостевой книги</a>
-            </li>
-            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/posts">Редактор блога</a></li>
-            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/blog">Мой блог</a></li>
+            <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/blog/0">Мой блог</a></li>
+
+            <?php if(!empty($user) and $user->isAdmin()):?>
+                <li onmouseover="bigMenu(this)" onmouseout="normalMenu(this)"><a href="/admin">Админка</a></li>
+            <?php endif; ?>
+
+
+
+            <?= !empty($user) ? 'Привет, ' . $user->getNickname() . ' | ' . "<a href=\"/users/logout\">Выйти</a>" :
+                    "<a href=\"/users/login\">Войти</a>" . " | " .
+                    "<a href=\"/users/register\">Зарегистрироваться</a>"?>
+
+
         </ul>
     </nav>
 </header>

@@ -37,33 +37,5 @@ class FeedbackController extends  AbstractController
         $this->view->renderHTML('main/guestBook.php',['feedbacks' => $feedbacks]);
     }
 
-    public function guestBookUpload()
-    {
-        $this->view->renderHTML('main/guestBookUpload.php');
-    }
 
-    public function guestBookUploadFile()
-    {
-        if(isset($_FILES['fileToUpload'])){
-            $errors= array();
-            $file_name = $_FILES['fileToUpload']['name'];
-            $file_size =$_FILES['fileToUpload']['size'];
-            $file_tmp =$_FILES['fileToUpload']['tmp_name'];
-            $file_type=$_FILES['fileToUpload']['type'];
-            $file_ext=strtolower(end(explode('.',$_FILES['fileToUpload']['name'])));
-
-            $extensions=["inc",'txt'];
-
-            if(in_array($file_ext,$extensions)=== false){
-                $errors[]="extension not allowed";
-            }
-
-            if(empty($errors)==true){
-                move_uploaded_file($file_tmp,$file_name);
-                echo "Success";
-            }else{
-                print_r($errors);
-            }
-        }
-    }
 }

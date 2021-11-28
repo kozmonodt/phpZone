@@ -12,37 +12,20 @@ class PostsController extends AbstractController
     public function main()
     {
         $posts = Post::findAll();
+
         $this->view->renderHTML('main/posts.php', ['posts'=>$posts]);
     }
 
-    public function add() :void
-    {
-        if(!empty($_POST)){
-            try{
-                $validator =new FormValidator( ['name'], ['name' => ['isNotEmpty']]);
-                $validator->validate($_POST);
-                $post = Post::createFromArray($_POST);
-            }
-            catch (InvalidDataException $e){
-                $posts = Post::findAll();
-                $this->view->renderHTML('main/posts.php', ['posts'=>$posts, 'error'=>$e->getMessage()]);
-                return;
-            }
-            header('Location: /posts' ,true,302);
-            exit;
-        }
 
-        $this->view->renderHTML('main/posts.php');
-    }
 
-    public function blog()
+    public function blog(int $blogId)
     {
 
         // количество записей, выводимых на странице
         $per_page=3;
         // получаем номер страницы
 //        $page= (int)(isset($_GET['page']) ? ($_GET['page']-1) : 0);
-        $page =0;
+        $page = $blogId;
         // вычисляем первый операнд для LIMIT
         $start=abs($page*$per_page);
         // выполняем запрос и выводим записи
@@ -59,11 +42,11 @@ class PostsController extends AbstractController
         $num_pages = ceil($total_rows/$per_page);
 
 
-
-
-
-
-        $posts = Post::findAll();
-        $this->view->renderHTML('main/blog.php', ['posts'=>$limitedQuery]);
+//        $posts = Post::findAll();
+        $this->view->renderHTML('main/blog.php', [
+            'posts'=>$limitedQuery,
+            'num_pages'=>$num_pages,
+            'page'=>$page
+            ]);
     }
 }

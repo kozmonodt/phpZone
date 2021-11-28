@@ -84,7 +84,7 @@ class Post extends ActiveRecordEntity
         $post = new Post();
         $post->setName($fields['name']);
         $post->setText($fields['text']);
-        $post->setImage($fields['image']);
+        $post->setImage($fields['fileToUpload']);
 
         $post->save();
         return $post;
@@ -115,6 +115,32 @@ class Post extends ActiveRecordEntity
     protected static function getTableName(): string
     {
         return "posts";
+    }
+
+    public function uploadImage()
+    {
+        if(isset($_FILES['fileToUpload'])){
+            $errors= array();
+            $file_name = $_FILES['fileToUpload']['name'];
+            $file_size =$_FILES['fileToUpload']['size'];
+            $file_tmp =$_FILES['fileToUpload']['tmp_name'];
+            $file_type=$_FILES['fileToUpload']['type'];
+            $file_ext=strtolower(end(explode('.',$_FILES['fileToUpload']['name'])));
+            echo $file_name;
+
+            $extensions=["inc",'txt'];
+
+            if(in_array($file_ext,$extensions)=== false){
+                $errors[]="extension not allowed";
+            }
+
+            if(empty($errors)==true){
+                move_uploaded_file($file_tmp,$file_name);
+                echo "Success";
+            }else{
+                print_r($errors);
+            }
+        }
     }
 
 }

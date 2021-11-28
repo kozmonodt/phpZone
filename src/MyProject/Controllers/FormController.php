@@ -77,15 +77,12 @@ class FormController extends AbstractController
             throw new UnauthorizedException();
         }
 
-
         //$validator->checkResults($_POST);
-
-
 
 
         if(!empty($_POST)){
 
-            $validator =new TestResultsVerification([]);
+            $validator =new TestResultsVerification([],[]);
             $results = $validator->checkResults($_POST);
             $test = Test::createFromArray($_POST, $results);
 
@@ -97,6 +94,9 @@ class FormController extends AbstractController
 
     public function viewTest($testId)
     {
+        if($this->user === null or !$this->user->isAdmin()){
+            throw new UnauthorizedException();
+        }
         $test = Test::getById($testId);
 
         if($test === null)

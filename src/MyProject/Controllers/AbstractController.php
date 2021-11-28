@@ -5,6 +5,7 @@ namespace MyProject\Controllers;
 use MyProject\Models\Users\User;
 use MyProject\Models\Users\UsersAuthService;
 use MyProject\View\View;
+use MyProject\Controllers\HostsController;
 
 
 class AbstractController
@@ -14,9 +15,12 @@ class AbstractController
 
     public function __construct()
     {
-       // $this->user = UsersAuthService::getUserByToken();
+//       выключал
+        $this->user = UsersAuthService::getUserByToken();
         $this->view = new View(__DIR__ . '/../../../templates');
         $this->view->setVar('user', $this->user);
+        HostsController::saveStatistics();
+
     }
 
     public function unsetUser()

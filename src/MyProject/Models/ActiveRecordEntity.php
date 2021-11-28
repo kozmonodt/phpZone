@@ -74,7 +74,7 @@ abstract class ActiveRecordEntity
     private function insert($mappedProperties)
     {
         $filteredProperties = array_filter($mappedProperties);
-        var_dump($filteredProperties);
+//        var_dump($filteredProperties);
         $columns = [];
         $paramsNames = [];
         $params2values = [];
@@ -90,7 +90,7 @@ abstract class ActiveRecordEntity
 
         $sql = 'INSERT INTO ' . static::getTableName() . ' (' . $columnsViaSemicolon . ') VALUES (' . $paramsNamesViaSemicolon . ');';
 
-        var_dump($sql);
+//        var_dump($sql);
 
         $db = Db::getInstance();
         $db->query($sql,$params2values,static::class);
