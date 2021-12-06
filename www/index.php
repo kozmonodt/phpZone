@@ -2,14 +2,17 @@
     try{
         spl_autoload_register(function (string $className)
         {
-            //echo __DIR__ . '/../src/' . str_replace('\\','/', $className) . '.php' . '<br>';
+//            echo __DIR__ . '/../src/' . str_replace('\\','/', $className) . '.php' . '<br>';
             require_once __DIR__ . '/../src/' . str_replace('\\','/', $className) . '.php';
         });
 
         $route = $_GET['route'] ?? '';
         $routes = require_once __DIR__ . '/../src/routes.php';
 
-//        echo  $_GET['route'];
+        echo 'this is route:' . $route . '<br>';
+        $text = $_GET['text'] ?? '';
+        echo $text;
+        echo $_SERVER['REQUEST_URI'];
 
         $foundRoute = false;
         foreach ($routes as $pattern => $controllerAndAction){

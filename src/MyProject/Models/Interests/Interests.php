@@ -6,8 +6,18 @@ use MyProject\Models\ActiveRecordEntity;
 
 class Interests extends ActiveRecordEntity
 {
-    protected $interest;
-    protected $text;
+    public $interest;
+    public $text;
+
+    /**
+     * @param $interest
+     * @param $text
+     */
+    public function __construct($interest, $text)
+    {
+        $this->interest = $interest;
+        $this->text = $text;
+    }
 
 
     protected static function getTableName() : string

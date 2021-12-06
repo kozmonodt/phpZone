@@ -93,7 +93,7 @@ class Adminka extends AbstractController
     {
         $this->authenticate();
         // количество записей, выводимых на странице
-        $per_page=5;
+        $per_page=3;
 
         $page = $statId;
 

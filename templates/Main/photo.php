@@ -13,7 +13,6 @@
             <?php $iii=0; ?>
             <?php for($i=0;$i<5;$i++):?>
                 <tr>
-
                    <?php for($ii=0; $ii<3; $ii++, $iii++):?>
                        <td>
                            <figure>

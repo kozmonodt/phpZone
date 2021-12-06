@@ -3,7 +3,7 @@
     <?php foreach ($posts as $post):?>
         <h2><a href="/posts/<?= $post->getId() ?>"><?= $post->getName() ?>  </a></h2>
         <p><?=$post->getText() ?></p>
-        <img src="/images/blog/<?=$post->getImage() ?>" alt="">
+        <img src="/images/blog/<?=$post->getImage() ?>" alt="" width="200">
         <hr>
     <?php endforeach;?>
 <!--Вывод модуля управления страницами-->

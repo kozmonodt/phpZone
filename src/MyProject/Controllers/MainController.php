@@ -5,6 +5,7 @@ namespace MyProject\Controllers;
 use MyProject\Models\Articles\Article;
 use MyProject\Models\Feedback\Feedback;
 use MyProject\Models\Interests\Interests;
+use MyProject\Models\Just_Data\InterestsData;
 use MyProject\Models\Just_Data\Photo_Album_Data;
 use MyProject\Models\Users\UsersAuthService;
 use MyProject\Services\Db;
@@ -14,10 +15,7 @@ class MainController extends AbstractController
 
     public function main()
     {
-/*        $articles = Article::findAll();
-        $this->view->renderHTML('main/main.php', ['articles'=>$articles]);*/
         $this->view->renderHTML('main/main.php');
-
     }
 
     public function about()
@@ -27,7 +25,10 @@ class MainController extends AbstractController
 
     public function interests()
     {
-        $interests = Interests::findAll();
+//        $interests = Interests::findAll();
+        $interestsObj = new InterestsData();
+        $interests = $interestsObj->getInterests();
+
         $this->view->renderHTML('main/interests.php', ['interests'=>$interests]);
     }
 
@@ -51,5 +52,9 @@ class MainController extends AbstractController
         $this->view->renderHTML('main/test.php');
     }
 
+    public function testShit()
+    {
+        $this->view->renderHTML('main/testShit.php');
+    }
 
 }

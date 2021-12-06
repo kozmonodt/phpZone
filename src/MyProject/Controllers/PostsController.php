@@ -24,19 +24,13 @@ class PostsController extends AbstractController
         // количество записей, выводимых на странице
         $per_page=3;
         // получаем номер страницы
-//        $page= (int)(isset($_GET['page']) ? ($_GET['page']-1) : 0);
+
         $page = $blogId;
         // вычисляем первый операнд для LIMIT
         $start=abs($page*$per_page);
-        // выполняем запрос и выводим записи
-//        $query = "SELECT * FROM cars ORDER BY name LIMIT $start, $per_page";
+
         $limitedQuery = Post::limitedQuery($start, $per_page);
-/*        foreach ($pdo->query($query) as $i => $car) {
-            echo ($i+$start).". ".$car['name']."<br>\n";
-        }*/
-        // выводим ссылки на страницы:
-//        $query = "SELECT count(*) FROM cars";
-//        $total_rows = $pdo->query($query)->fetchColumn();
+
         $total_rows = Post::countEntries();
         // Определяем общее количество страниц
         $num_pages = ceil($total_rows/$per_page);

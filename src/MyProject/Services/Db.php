@@ -1,9 +1,6 @@
 <?php
 
 namespace MyProject\Services;
-
-
-
 use MyProject\Exceptions\DbException;
 
 class Db

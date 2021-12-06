@@ -81,9 +81,7 @@ class Test extends ActiveRecordEntity
     public static function createFromArray(array $fields, array $results) : Test
     {
 
-
         $test = new Test();
-
 
         $test->setFio($fields['fio']);
         unset($fields['fio']);

@@ -11,6 +11,4 @@ class HostsController extends AbstractController
         Host::saveStatistic();
     }
 
-
-
 }

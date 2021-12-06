@@ -52,8 +52,4 @@ class ValidatorsData
         self::$results = $results;
     }
 
-
-
-
-
 }

@@ -26,20 +26,12 @@ class FormController extends AbstractController
                     'email' => ['isNotEmpty', 'isEmail'],
                     'telefon' => ['isNotEmpty', 'isTelNumber'],
                     ]);
-//                $rules= ValidatorsData::getRulesForContact();
-//                foreach($rules as $rule_key => $rules){
-//                    foreach($rules as $rule){
-//                        $validator->setRule($rule_key,$rule);
-//                    }
-//                }
                 $validator->validate($_POST);
             }
             catch (InvalidDataException $e){
                 $this->view->renderHTML('main/contact.php', ['error'=>$e->getMessage()]);
                 return;
             }
-//            header('Location: /articles/' . $article->getId(),true,302);
-//            exit;
 
         }
         $this->view->renderHTML('main/contact.php');
@@ -62,8 +54,6 @@ class FormController extends AbstractController
                 $this->view->renderHTML('main/test.php', ['error'=>$e->getMessage()]);
                 return;
             }
-//            header('Location: /articles/' . $article->getId(),true,302);
-//            exit;
 
         }
         $this->view->renderHTML('main/test.php');
@@ -78,7 +68,6 @@ class FormController extends AbstractController
         }
 
         //$validator->checkResults($_POST);
-
 
         if(!empty($_POST)){
 
@@ -109,5 +98,6 @@ class FormController extends AbstractController
                 'test' => $test,
             ]
         );
-    }
+ }
+
 }

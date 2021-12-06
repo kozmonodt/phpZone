@@ -28,5 +28,7 @@ return [
     "/^posts\/add$/" =>[\MyProject\Controllers\Adminka::class, 'addPosts'],
     "/^blog\/(\d+)$/" => [\MyProject\Controllers\PostsController::class, 'blog'],
     "/^statistics\/(\d+)$/" => [\MyProject\Controllers\Adminka::class, 'showStat'],
-    "/^admin/" => [\MyProject\Controllers\Adminka::class, 'showAdminkaMain'],
+    "/^admin$/" => [\MyProject\Controllers\Adminka::class, 'showAdminkaMain'],
+    "/^testshit$/" => [\MyProject\Controllers\MainController::class, 'testShit'],
+
 ];
